@@ -1,4 +1,4 @@
-import { startOfDay, endOfDay, parseIso } from 'date-fns';
+import { startOfDay, endOfDay, parseISO } from 'date-fns';
 import { Op } from 'sequelize';
 
 import Appointment from '../models/Appointment';
@@ -11,13 +11,11 @@ class ScheduleController {
         });
 
         if (!checkUserProvider) {
-            return res.json(401).json({ error: 'User is not a provider' });
+            return res.status(401).json({ error: 'User is not a provider' });
         }
 
         const { date } = req.query;
-        const parsedDate = parseIso(date);
-
-        console.log(parsedDate);
+        const parsedDate = parseISO(date);
 
         const appointments = await Appointment.findAll({
             where: {
