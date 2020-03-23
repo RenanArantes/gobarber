@@ -28,10 +28,18 @@ class ScheduleController {
                     ],
                 },
             },
+            include: [
+                {
+                    model: User,
+                    as: 'user',
+                    attributes: ['name'],
+                },
+            ],
+
             order: ['date'],
         });
 
-        res.json(appointments);
+        return res.json(appointments);
     }
 }
 
