@@ -1,20 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Form, Input } from '@rocketseat/unform';
+import * as Yup from 'yup';
 
 import logo from '~/assets/logo.svg';
 
+const schema = Yup.object().shape({
+    name: Yup.string().required('O nome é obrigatório.'),
+    email: Yup.string()
+        .email('Insira um e-mail valido.')
+        .required('O e-mail é obrigatorio.'),
+    password: Yup.string()
+        .min(6, 'No mínimo seis caracteres.')
+        .required('A senha é obrigatória.'),
+});
+
 export default function SignUp() {
+    function handleSubmit(data) {
+        console.tron.log(data);
+    }
+
     return (
         <>
             <img src={logo} alt="GoBarber" />
-            <form>
-                <input placeholder="Nome completo" />
-                <input type="email" placeholder="Seu e-mail" />
-                <input type="password" placeholder="Sua senha aqui" />
+            <Form schema={schema} onSubmit={handleSubmit}>
+                <Input name="name" placeholder="Nome completo" />
+                <Input name="email" type="email" placeholder="Seu e-mail" />
+                <Input
+                    name="password"
+                    type="password"
+                    placeholder="Sua senha aqui"
+                />
 
                 <button type="submit">Criar conta</button>
                 <Link to="/">Já tenho login</Link>
-            </form>
+            </Form>
         </>
     );
 }

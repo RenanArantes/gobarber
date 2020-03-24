@@ -49,6 +49,13 @@ export const Content = styled.div`
             }
         }
 
+        span {
+            color: rgb(205, 10, 0);
+            align-self: flex-start;
+            margin: 0 0 10px;
+            font-weight: bold;
+        }
+
         a {
             color: #fff;
             margin-top: 15px;
