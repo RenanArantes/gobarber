@@ -51,7 +51,8 @@ export default function Dashboard() {
                     ),
                 };
             });
-
+            console.tron.log(response)
+            console.tron.log(data)
             setSchedule(data);
         }
         loadSchedule();
@@ -89,8 +90,6 @@ export default function Dashboard() {
                                 ? time.appointment.user.name
                                 : 'Em aberto.'}
                         </span>
-
-                        {time.past ? <span>Horário expirado</span> : null}
                     </Time>
                 ))}
             </ul>
